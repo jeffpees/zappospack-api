@@ -17,8 +17,7 @@ import java.util.*;
 @RequestMapping("/test")
 public class ApiController {
 
-
-    private int orderNumber = 1, boxID = 1, setNums = 50;
+    //private int orderNumber = 1, setNums = 50;
 
     @RequestMapping(method = RequestMethod.POST, value = "order")
     @ResponseBody
@@ -135,6 +134,9 @@ public class ApiController {
 
         boxOrder(listOfItems);
 
+        BoxCompare boxCompare = new BoxCompare();
+        Collections.sort(listOfItems, boxCompare);
+
         javaToJsonConverter(listOfItems);
 
         return listOfItems;
@@ -202,7 +204,7 @@ public class ApiController {
 
     public List<Item> boxOrder (List<Item> listOfItems) {
 
-        int boxSize = 9;
+        int boxSize = 9, boxID = 1;
 
         while (!isComplete(listOfItems)) {  //loops until every item is boxed
 
