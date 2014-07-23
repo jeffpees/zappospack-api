@@ -1,7 +1,6 @@
 package test.json;
 
 import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.stereotype.Controller;
@@ -10,10 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.*;
 
 @Controller
@@ -60,102 +57,119 @@ public class ApiController {
 
     public void createOrder (int accessories, int bags, int beauty, int clothes, int housewares, int shoes) {
 
+        int itemNo = 1;
 
-    try {
+        for (int x = 0; x < accessories; x++) {
+            Item item = new Item();
 
-            for (int x = 0; x < accessories; x++) {
-                Item item = new Item();
+            item.orderNumber = 1;
+            item.itemNumber = itemNo;
+            item.type = "accessories";
+            item.size = 1;
+            item.status = "unboxed";
 
-                item.orderNumber = 1;
-                item.type = "accessories";
-                item.size = 1;
-                item.status = "unboxed";
+            listOfItems.add(item);
 
-                listOfItems.add(item);
+            x++;
+            itemNo++;
 
-                x++;
+        }
 
-            }
+        for (int x = 0; x < bags; x++) {
+            Item item = new Item();
 
-            for (int x = 0; x < bags; x++) {
-                Item item = new Item();
+            item.orderNumber = 1;
+            item.itemNumber = itemNo;
+            item.type = "bags";
+            item.size = 3;
+            item.status = "unboxed";
 
-                item.orderNumber = 1;
-                item.type = "bags";
-                item.size = 3;
-                item.status = "unboxed";
+            listOfItems.add(item);
 
-                listOfItems.add(item);
+            x++;
+            itemNo++;
+        }
 
-                x++;
+        for (int x = 0; x < beauty; x++) {
+            Item item = new Item();
 
-            }
+            item.orderNumber = 1;
+            item.itemNumber = itemNo;
+            item.type = "beauty";
+            item.size = 1;
+            item.status = "unboxed";
 
-            for (int x = 0; x < beauty; x++) {
-                Item item = new Item();
+            listOfItems.add(item);
 
-                item.orderNumber = 1;
-                item.type = "beauty";
-                item.size = 1;
-                item.status = "unboxed";
+            x++;
+            itemNo++;
 
-                listOfItems.add(item);
+        }
 
-                x++;
+        for (int x = 0; x < clothes; x++) {
+            Item item = new Item();
 
-            }
+            item.orderNumber = 1;
+            item.itemNumber = itemNo;
+            item.type = "clothes";
+            item.size = 2;
+            item.status = "unboxed";
 
-            for (int x = 0; x < clothes; x++) {
-                Item item = new Item();
+            listOfItems.add(item);
 
-                item.orderNumber = 1;
-                item.type = "clothes";
-                item.size = 2;
-                item.status = "unboxed";
+            x++;
+            itemNo++;
 
-                listOfItems.add(item);
+        }
 
-                x++;
+        for (int x = 0; x < housewares; x++) {
+            Item item = new Item();
 
-            }
+            item.orderNumber = 1;
+            item.itemNumber = itemNo;
+            item.type = "housewares";
+            item.size = 5;
+            item.status = "unboxed";
 
-            for (int x = 0; x < housewares; x++) {
-                Item item = new Item();
+            listOfItems.add(item);
 
-                item.orderNumber = 1;
-                item.type = "housewares";
-                item.size = 5;
-                item.status = "unboxed";
+            x++;
+            itemNo++;
+        }
 
-                listOfItems.add(item);
+        for (int x = 0; x < shoes; x++) {
+            Item item = new Item();
 
-                x++;
+            item.orderNumber = 1;
+            item.itemNumber = itemNo;
+            item.type = "shoes";
+            item.size = 3;
+            item.status = "unboxed";
 
-            }
-
-            for (int x = 0; x < shoes; x++) {
-                Item item = new Item();
-
-                item.orderNumber = 1;
-                item.type = "shoes";
-                item.size = 3;
-                item.status = "unboxed";
-
-                listOfItems.add(item);
+            listOfItems.add(item);
 
 
-                x++;
+            x++;
+            itemNo++;
 
-            }
+        }
 
         boxOrder(listOfItems);
 
-        final ObjectMapper mapper = new ObjectMapper();
+        javaToJsonConverter(listOfItems);
 
-        mapper.writeValue(new File("/Users/jeffrep/Desktop/listOfItems.json"), listOfItems);
+    }
+
+    public void javaToJsonConverter (List<Item> listOfItems) {
+
+        try {
+
+            final ObjectMapper mapper = new ObjectMapper();
+
+            mapper.writerWithDefaultPrettyPrinter().writeValue(new File("/Users/jeffrep/Desktop/listOfItems.json"), listOfItems);
 
 
-    } catch (JsonGenerationException e) {
+        } catch (JsonGenerationException e) {
 
             e.printStackTrace();
 
@@ -171,7 +185,8 @@ public class ApiController {
 
     }
 
-   /* public int getSize(String type) { // returns the size value of the item
+/*
+    public int getSize(String type) { // returns the size value of the item
 
         switch (type) {
 
@@ -190,7 +205,8 @@ public class ApiController {
             default: return 0;
         }
 
-    }   */
+    }
+*/
 
     class BoxCompare implements Comparator<Item> {
         public int compare(Item one, Item two) {
@@ -293,13 +309,6 @@ public class ApiController {
 
         }
     }
-
-
-    public List<Item> getAllItems() {
-        return listOfItems;
-    }
-
-
 
 }
 

@@ -3,6 +3,7 @@ package test.json;
 public class Item implements Comparable<Item> {
 
     public int orderNumber;
+    public int itemNumber;
     public String type;
     public int size;
     public int boxNumber;
@@ -12,9 +13,10 @@ public class Item implements Comparable<Item> {
         super();
     }
 
-    public Item(int orderNumber, String type, int size, int boxNumber, String status) {
+    public Item(int orderNumber, int itemNumber, String type, int size, int boxNumber, String status) {
 
         this.orderNumber = orderNumber;
+        this.itemNumber = itemNumber;
         this.type = type;
         this.size = size;
         this.boxNumber = boxNumber;
@@ -28,6 +30,14 @@ public class Item implements Comparable<Item> {
 
     public void setOrderNumber(int orderNumber) {
         this.orderNumber = orderNumber;
+    }
+
+    public int getItemNumber() {
+        return itemNumber;
+    }
+
+    public void setItemNumber() {
+        this.itemNumber = itemNumber;
     }
 
     public String getType() {
@@ -82,7 +92,7 @@ public class Item implements Comparable<Item> {
     @Override
     public String toString() {
 
-        return "Item [order number= " + orderNumber + ", type= " + type + ", size= " + size + ", boxnumber= " + boxNumber + ", status:= " + status + "]";
+        return "Item [order number= " + orderNumber + ", item number= " + itemNumber +  ", type= " + type + ", size= " + size + ", boxnumber= " + boxNumber + ", status:= " + status + "]\n";
     }
 
 }
