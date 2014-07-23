@@ -19,8 +19,8 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:3.0.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-context-support:3.0.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-web:3.0.5.RELEASE" />
-          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.4.2" />
-          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-core-asl:1.4.2" />
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.9.12" />
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-core-asl:1.9.12" />
         </element>
       </element>
     </root>

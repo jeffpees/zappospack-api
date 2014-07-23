@@ -79,10 +79,10 @@ public class Item implements Comparable<Item> {
         return type.hashCode();
     }
 
+    @Override
     public String toString() {
 
-        return "\norder number: " + orderNumber + " type: " + type + " size: " + size + " in box number: " + boxNumber + " status: " + status;
-
+        return "Item [order number= " + orderNumber + ", type= " + type + ", size= " + size + ", boxnumber= " + boxNumber + ", status:= " + status + "]";
     }
 
 }

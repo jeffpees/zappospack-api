@@ -7,7 +7,7 @@
             <groupId>org.springframework</groupId><artifactId>spring-webmvc</artifactId><version>3.0.5.RELEASE</version>
         </dependency>
         <dependency><!-- jackson -->
-            <groupId>org.codehaus.jackson</groupId><artifactId>jackson-mapper-asl</artifactId><version>1.4.2</version>
+            <groupId>org.codehaus.jackson</groupId><artifactId>jackson-mapper-asl</artifactId><version>1.9.12</version>
         </dependency>
     </dependencies>
     <build><plugins>
