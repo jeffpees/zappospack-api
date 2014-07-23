@@ -17,17 +17,14 @@ import java.util.*;
 @RequestMapping("/test")
 public class ApiController {
 
-    public List<Item> listOfItems = new ArrayList<Item>();
+
     private int orderNumber = 1, boxID = 1, setNums = 50;
 
     @RequestMapping(method = RequestMethod.POST, value = "order")
     @ResponseBody
-    public Result order(@RequestBody final Request request) {
-        final Result result = new Result();
-        /*  result.setAddition((request.getLeft() + request.getRight()) * 2 );
-        result.setSubtraction(request.getLeft() - request.getRight());
-        result.setMultiplication(request.getLeft() * request.getRight());
-        return result; */
+    public List<Item> order(@RequestBody final Request request) {
+
+        List<Item> listOfItems = new ArrayList<Item>();
 
         int acc = request.getAccessories();
         int bags = request.getBags();
@@ -35,28 +32,17 @@ public class ApiController {
         int cloth = request.getClothes();
         int house = request.getHousewares();
         int shoes = request.getShoes();
-        int total = (acc + bags + beaut + cloth + house + shoes);
 
-        createOrder(acc, bags, beaut, cloth, house, shoes);
+        listOfItems = createOrder(acc, bags, beaut, cloth, house, shoes);
 
-
-
-        result.setAccessories(acc);
-        result.setBags(bags);
-        result.setBeauty(beaut);
-        result.setClothes(cloth);
-        result.setHousewares(house);
-        result.setShoes(shoes);
-        result.setTotal(total);
-
-        return result;
-
+        return listOfItems;
 
     }
 
 
-    public void createOrder (int accessories, int bags, int beauty, int clothes, int housewares, int shoes) {
+    public List<Item> createOrder (int accessories, int bags, int beauty, int clothes, int housewares, int shoes) {
 
+        List<Item> listOfItems = new ArrayList<Item>();
         int itemNo = 1;
 
         for (int x = 0; x < accessories; x++) {
@@ -70,7 +56,6 @@ public class ApiController {
 
             listOfItems.add(item);
 
-            x++;
             itemNo++;
 
         }
@@ -86,7 +71,6 @@ public class ApiController {
 
             listOfItems.add(item);
 
-            x++;
             itemNo++;
         }
 
@@ -101,7 +85,6 @@ public class ApiController {
 
             listOfItems.add(item);
 
-            x++;
             itemNo++;
 
         }
@@ -117,7 +100,6 @@ public class ApiController {
 
             listOfItems.add(item);
 
-            x++;
             itemNo++;
 
         }
@@ -133,7 +115,6 @@ public class ApiController {
 
             listOfItems.add(item);
 
-            x++;
             itemNo++;
         }
 
@@ -148,8 +129,6 @@ public class ApiController {
 
             listOfItems.add(item);
 
-
-            x++;
             itemNo++;
 
         }
@@ -157,6 +136,8 @@ public class ApiController {
         boxOrder(listOfItems);
 
         javaToJsonConverter(listOfItems);
+
+        return listOfItems;
 
     }
 

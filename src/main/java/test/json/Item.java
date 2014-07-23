@@ -92,7 +92,7 @@ public class Item implements Comparable<Item> {
     @Override
     public String toString() {
 
-        return "Item [order number= " + orderNumber + ", item number= " + itemNumber +  ", type= " + type + ", size= " + size + ", boxnumber= " + boxNumber + ", status:= " + status + "]\n";
+        return "Item [order number= " + orderNumber + ", item number= " + itemNumber +  ", type= " + type + ", size= " + size + ", boxnumber= " + boxNumber + ", status:= " + status + "]";
     }
 
 }
