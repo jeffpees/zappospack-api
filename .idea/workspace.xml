@@ -11,7 +11,7 @@
     <file path="/ApiController.java" changelist="b3ccaec7-f61d-4e70-894b-2d002fd3e6a1" time="1406147710651" ignored="false" />
     <file path="/Item.java" changelist="b3ccaec7-f61d-4e70-894b-2d002fd3e6a1" time="1406145670210" ignored="false" />
     <file path="$PROJECT_DIR$/../jackson/pom.xml" changelist="b3ccaec7-f61d-4e70-894b-2d002fd3e6a1" time="1406142631863" ignored="false" />
-    <file path="$PROJECT_DIR$/.idea/workspace.xml" changelist="b3ccaec7-f61d-4e70-894b-2d002fd3e6a1" time="1406148090955" ignored="false" />
+    <file path="$PROJECT_DIR$/.idea/workspace.xml" changelist="b3ccaec7-f61d-4e70-894b-2d002fd3e6a1" time="1406149715117" ignored="false" />
     <file path="$PROJECT_DIR$/.idea/compiler.xml" changelist="b3ccaec7-f61d-4e70-894b-2d002fd3e6a1" time="1406144618418" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -130,7 +130,7 @@
       <file leaf-file-name="ApiController.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/test/json/ApiController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="127" column="35" selection-start="3301" selection-end="3301" vertical-scroll-proportion="-1.9097222">
+            <state line="26" column="8" selection-start="826" selection-end="826" vertical-scroll-proportion="0.5555556">
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#864#870#0" expanded="true" />
@@ -708,7 +708,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/test/json/ApiController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="127" column="35" selection-start="3301" selection-end="3301" vertical-scroll-proportion="-1.9097222">
+        <state line="26" column="8" selection-start="826" selection-end="826" vertical-scroll-proportion="0.5555556">
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#864#870#0" expanded="true" />
