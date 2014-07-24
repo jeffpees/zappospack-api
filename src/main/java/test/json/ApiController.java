@@ -17,8 +17,6 @@ import java.util.*;
 @RequestMapping("/test")
 public class ApiController {
 
-    //private int orderNumber = 1, setNums = 50;
-
     @RequestMapping(method = RequestMethod.POST, value = "order")
     @ResponseBody
     public List<Item> order(@RequestBody final Request request) {
@@ -42,93 +40,62 @@ public class ApiController {
     public List<Item> createOrder (int accessories, int bags, int beauty, int clothes, int housewares, int shoes) {
 
         List<Item> listOfItems = new ArrayList<Item>();
+        ArrayList<Integer> types = new ArrayList();
+        ArrayList<Integer> noOfItems = new ArrayList();
+
+        int noOfTypes = 0;
+
         int itemNo = 1;
 
-        for (int x = 0; x < accessories; x++) {
-            Item item = new Item();
-
-            item.orderNumber = 1;
-            item.itemNumber = itemNo;
-            item.type = "accessories";
-            item.size = 1;
-            item.status = "unboxed";
-
-            listOfItems.add(item);
-
-            itemNo++;
-
+        if (accessories > 0) {
+            types.add(1);
+            noOfItems.add(accessories);
+            noOfTypes = noOfTypes + 1;
+        }
+        if (bags > 0) {
+            types.add(2);
+            noOfItems.add(bags);
+            noOfTypes = noOfTypes + 1;
+        }
+        if (beauty > 0) {
+            types.add(3);
+            noOfItems.add(beauty);
+            noOfTypes = noOfTypes + 1;
+        }
+        if (clothes > 0) {
+            types.add(4);
+            noOfItems.add(clothes);
+            noOfTypes = noOfTypes + 1;
+        }
+        if (housewares > 0) {
+            types.add(5);
+            noOfItems.add(housewares);
+            noOfTypes = noOfTypes + 1;
+        }
+        if (shoes > 0) {
+            types.add(6);
+            noOfItems.add(shoes);
+            noOfTypes = noOfTypes + 1;
         }
 
-        for (int x = 0; x < bags; x++) {
+
+        for (int x = 0; x < noOfTypes; x++) {
+
+            for (int y = 0; y < noOfItems.get(y); y++) {
+
             Item item = new Item();
 
             item.orderNumber = 1;
             item.itemNumber = itemNo;
-            item.type = "bags";
-            item.size = 3;
-            item.status = "unboxed";
-
-            listOfItems.add(item);
-
-            itemNo++;
-        }
-
-        for (int x = 0; x < beauty; x++) {
-            Item item = new Item();
-
-            item.orderNumber = 1;
-            item.itemNumber = itemNo;
-            item.type = "beauty";
-            item.size = 1;
+            item.type = getType(types.get(x));
+            item.size = getSize(item.type);
             item.status = "unboxed";
 
             listOfItems.add(item);
 
             itemNo++;
 
-        }
-
-        for (int x = 0; x < clothes; x++) {
-            Item item = new Item();
-
-            item.orderNumber = 1;
-            item.itemNumber = itemNo;
-            item.type = "clothes";
-            item.size = 2;
-            item.status = "unboxed";
-
-            listOfItems.add(item);
-
-            itemNo++;
-
-        }
-
-        for (int x = 0; x < housewares; x++) {
-            Item item = new Item();
-
-            item.orderNumber = 1;
-            item.itemNumber = itemNo;
-            item.type = "housewares";
-            item.size = 5;
-            item.status = "unboxed";
-
-            listOfItems.add(item);
-
-            itemNo++;
-        }
-
-        for (int x = 0; x < shoes; x++) {
-            Item item = new Item();
-
-            item.orderNumber = 1;
-            item.itemNumber = itemNo;
-            item.type = "shoes";
-            item.size = 3;
-            item.status = "unboxed";
-
-            listOfItems.add(item);
-
-            itemNo++;
+            }
 
         }
 
@@ -168,7 +135,7 @@ public class ApiController {
 
     }
 
-/*
+
     public int getSize(String type) { // returns the size value of the item
 
         switch (type) {
@@ -189,7 +156,7 @@ public class ApiController {
         }
 
     }
-*/
+
 
     class BoxCompare implements Comparator<Item> {
         public int compare(Item one, Item two) {
@@ -218,13 +185,13 @@ public class ApiController {
                     boxSize = 9;
                     listOfItems.get(x).boxNumber = boxID;
                     boxSize -= listOfItems.get(x).size;
-                    listOfItems.get(x).status = "full";
+                    listOfItems.get(x).status = "new box";
                     continue;
                 }
                 else if (!full) { //subtracts from boxSize, assigns ID to ordered item, and updates the status
                     boxSize -= listOfItems.get(x).size;
                     listOfItems.get(x).boxNumber = boxID;
-                    listOfItems.get(x).status = "not full";
+                    listOfItems.get(x).status = "packing same box";
                     continue;
                 }
 
@@ -262,6 +229,30 @@ public class ApiController {
 
         return true;
 
+    }
+
+    public String getType(int typeNumber) { //assigns a type of product that we sell based on ID
+
+        switch(typeNumber)
+        {
+            case 1: return "accessories";
+
+            case 2: return "bags";
+
+            case 3: return "beauty";
+
+            case 4: return "clothes";
+
+            case 5: return "housewares";
+
+            case 6: return "shoes";
+
+            default:
+
+                System.out.println(typeNumber);
+                return "error";
+
+        }
     }
 
     public String getRandomType() { //randomly assigns a type of product that we sell
