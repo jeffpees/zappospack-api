@@ -23,17 +23,70 @@ public class ApiController {
 
         List<Item> listOfItems = new ArrayList<Item>();
 
-        int acc = request.getAccessories();
-        int bags = request.getBags();
-        int beaut = request.getBeauty();
-        int cloth = request.getClothes();
-        int house = request.getHousewares();
-        int shoes = request.getShoes();
+        boolean random = request.getRandom();
 
-        listOfItems = createOrder(acc, bags, beaut, cloth, house, shoes);
+        if (!random) {
+
+            int acc = request.getAccessories();
+            int bags = request.getBags();
+            int beaut = request.getBeauty();
+            int cloth = request.getClothes();
+            int house = request.getHousewares();
+            int shoes = request.getShoes();
+
+            listOfItems = createOrder(acc, bags, beaut, cloth, house, shoes);
+
+        }
+
+        else {
+
+            int randomInt = request.getRandomInt();
+            listOfItems = createRandomOrder(randomInt);
+
+
+        }
 
         return listOfItems;
 
+    }
+
+    public List<Item> createRandomOrder(int randomInt) {
+
+        List<Item> listOfItems = new ArrayList<Item>();
+        Random r = new Random();
+        int setNums = 0, itemNo = 1;
+
+        if (randomInt == 0) { setNums = 50;}
+        else { setNums = randomInt; }
+
+        int numOfItems =  1 + r.nextInt(setNums); //chooses a random number that will be of items in the order.
+
+        for (int x = 0; x < numOfItems; x++ ) {
+
+            String tempType = getRandomType();
+            Item item = new Item();
+
+            item.orderNumber = 1;
+            item.itemNumber = itemNo;
+            item.type = tempType;
+            item.size = getSize(tempType);
+            item.status = "unboxed";
+
+            itemNo++;
+
+            listOfItems.add(item);
+
+
+        }
+
+        boxOrder(listOfItems);
+
+        BoxCompare boxCompare = new BoxCompare();
+        Collections.sort(listOfItems, boxCompare);
+
+        javaToJsonConverter(listOfItems);
+
+        return listOfItems;
     }
 
 
@@ -41,65 +94,65 @@ public class ApiController {
 
         List<Item> listOfItems = new ArrayList<Item>();
         ArrayList<Integer> types = new ArrayList();
+        ArrayList<Integer> allTypes = new ArrayList();
         ArrayList<Integer> noOfItems = new ArrayList();
 
-        int noOfTypes = 0;
+        int noOfTypes = 0, itemNo = 1;
 
-        int itemNo = 1;
+        allTypes.add(accessories);
+        allTypes.add(bags);
+        allTypes.add(beauty);
+        allTypes.add(clothes);
+        allTypes.add(housewares);
+        allTypes.add(shoes);
 
-        if (accessories > 0) {
-            types.add(1);
-            noOfItems.add(accessories);
-            noOfTypes = noOfTypes + 1;
-        }
-        if (bags > 0) {
-            types.add(2);
-            noOfItems.add(bags);
-            noOfTypes = noOfTypes + 1;
-        }
-        if (beauty > 0) {
-            types.add(3);
-            noOfItems.add(beauty);
-            noOfTypes = noOfTypes + 1;
-        }
-        if (clothes > 0) {
-            types.add(4);
-            noOfItems.add(clothes);
-            noOfTypes = noOfTypes + 1;
-        }
-        if (housewares > 0) {
-            types.add(5);
-            noOfItems.add(housewares);
-            noOfTypes = noOfTypes + 1;
-        }
-        if (shoes > 0) {
-            types.add(6);
-            noOfItems.add(shoes);
-            noOfTypes = noOfTypes + 1;
-        }
+        System.out.println(allTypes);
 
+        for (int x = 0; x < 6 ; x++) {
 
-        for (int x = 0; x < noOfTypes; x++) {
+            //System.out.println("x = " + x + " noOfItems = " + allTypes.get(x) + " allTypes.get(x) > 0 " + (allTypes.get(x) > 0) );
 
-            for (int y = 0; y < noOfItems.get(y); y++) {
+            if(allTypes.get(x) > 0) {
 
-            Item item = new Item();
-
-            item.orderNumber = 1;
-            item.itemNumber = itemNo;
-            item.type = getType(types.get(x));
-            item.size = getSize(item.type);
-            item.status = "unboxed";
-
-            listOfItems.add(item);
-
-            itemNo++;
+                types.add(x + 1);
+                noOfItems.add(allTypes.get(x));
+                noOfTypes = noOfTypes + 1;
 
             }
 
         }
 
+
+        for (int x = 0; x < noOfTypes; x++) {
+
+            //System.out.println("getType: " + getType(x + 1) + " noOfItems " + noOfItems.get(x));
+
+            for (int y = 0; y < noOfItems.get(x); y++) {
+
+                Item item = new Item();
+
+                item.orderNumber = 1;
+                item.itemNumber = itemNo;
+                item.type = getType(types.get(x));
+                item.size = getSize(item.type);
+                item.status = "unboxed";
+
+                listOfItems.add(item);
+
+                itemNo++;
+
+                if (noOfItems.get(x) < 2) {
+                    break;
+                }
+
+            }
+
+        }
+
+
         boxOrder(listOfItems);
+
+
 
         BoxCompare boxCompare = new BoxCompare();
         Collections.sort(listOfItems, boxCompare);

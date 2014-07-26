@@ -25,6 +25,8 @@ public class Request implements Serializable {
     private int housewares;
     private int beauty;
     private int accessories;
+    private boolean random;
+    private int randomInt;
 
     public int getShoes() {return shoes;}
     public void setShoes(int shoes) {this.shoes = shoes;}
@@ -38,5 +40,8 @@ public class Request implements Serializable {
     public void setBeauty(int beauty) {this.beauty = beauty;}
     public int getAccessories() {return accessories;}
     public void setAccessories(int accessories) {this.accessories = accessories;}
-
+    public boolean getRandom() {return random;}
+    public void setRandom(boolean random) {this.random = random;}
+    public int getRandomInt() {return randomInt;}
+    public void setRandomInt(int randomInt) {this.randomInt = randomInt;}
 }
