@@ -50,6 +50,14 @@ public class ApiController {
 
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/api")
+    @ResponseBody
+    public Item items() {
+        Item i = new Item(1, 2, "test", 3, 4, "testing");
+
+        return i;
+    }
+
     public List<Item> createRandomOrder(int randomInt) {
 
         List<Item> listOfItems = new ArrayList<Item>();
